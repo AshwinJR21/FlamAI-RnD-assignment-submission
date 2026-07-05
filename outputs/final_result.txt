@@ -1,0 +1,30 @@
+
+Final Parameters
+----------------
+theta = 29.9999729322 degrees
+theta = 0.5235983032 radians
+M     = 0.0299999969
+X     = 54.9999982128
+
+t range = 6 to 60
+
+Mean L1 Error
+-------------
+0.000003496759
+
+Final Equation for README / Desmos
+----------------------------------
+\left(t\cos(0.523598)-e^{0.030000\left|t\right|}\sin(0.3t)\sin(0.523598)+54.999998,\ 42+t\sin(0.523598)+e^{0.030000\left|t\right|}\sin(0.3t)\cos(0.523598)\right)
+
+Generated Output Files
+----------------------
+outputs/curve_comparison_overlay.png
+outputs/curve_comparison_side_by_side.png
+outputs/residual_analysis.png
+outputs/residual_scatter.png
+outputs/final_result.txt
+
+Note
+----
+All CSV points were used for fitting and L1 error calculation.
+For the overlay plot, only every 20th CSV point was displayed so that the predicted curve remains visible.
