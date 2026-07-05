@@ -67,25 +67,7 @@ $$
 
 The final parametric equation is:
 
-$$
-\left(
-t\cos(0.523599)
--
-e^{0.030000|t|}
-\sin(0.3t)
-\sin(0.523599)
-+
-55.000000,
-\ 
-42
-+
-t\sin(0.523599)
-+
-e^{0.030000|t|}
-\sin(0.3t)
-\cos(0.523599)
-\right)
-$$
+$$\left(t\cos(0.523599)-e^{0.030000|t|}\sin(0.3t)\sin(0.523599)+55.000000,\ 42+t\sin(0.523599)+e^{0.030000|t|}\sin(0.3t)\cos(0.523599)\right)$$
 
 ---
 
@@ -94,7 +76,7 @@ $$
 The final equation can be visualized in Desmos using the following link:
 
 ```text
-PASTE_YOUR_DESMOS_LINK_HERE
+[Desmos link](https://www.desmos.com/calculator/rsiefxkcqj)
 ```
 
 Copy-paste format for Desmos:
