@@ -8,30 +8,30 @@ The objective of the assignment is to find the unknown parameters of a given par
 
 The curve is defined as:
 
-\[
+$$
 x = t\cos(\theta) - e^{M|t|}\sin(0.3t)\sin(\theta) + X
-\]
+$$
 
-\[
+$$
 y = 42 + t\sin(\theta) + e^{M|t|}\sin(0.3t)\cos(\theta)
-\]
+$$
 
 The unknown variables to be estimated are:
 
-\[
+$$
 \theta,\ M,\ X
-\]
+$$
 
 The given parameter ranges are:
 
 | Parameter | Range |
 |---|---|
-| \(\theta\) | \(0^\circ < \theta < 50^\circ\) |
-| \(M\) | \(-0.05 < M < 0.05\) |
-| \(X\) | \(0 < X < 100\) |
-| \(t\) | \(6 < t < 60\) |
+| theta | 0 degrees < theta < 50 degrees |
+| M | -0.05 < M < 0.05 |
+| X | 0 < X < 100 |
+| t | 6 < t < 60 |
 
-The goal is to estimate the correct values of \(\theta\), \(M\), and \(X\) such that the generated parametric curve matches the points given in `xy_data.csv`.
+The goal is to estimate the correct values of `theta`, `M`, and `X` such that the generated parametric curve matches the points given in `xy_data.csv`.
 
 ---
 
@@ -41,10 +41,10 @@ The final estimated parameter values are:
 
 | Parameter | Value |
 |---|---:|
-| \(\theta\) in degrees | `30.000000` |
-| \(\theta\) in radians | `0.523599` |
-| \(M\) | `0.030000` |
-| \(X\) | `55.000000` |
+| theta in degrees | `30.000000` |
+| theta in radians | `0.523599` |
+| M | `0.030000` |
+| X | `55.000000` |
 
 So the final answer is:
 
@@ -59,17 +59,33 @@ X     = 55
 
 ## 3. Final Parametric Equation
 
-Since Python and Desmos use radians for trigonometric functions, \(\theta = 30^\circ\) is written as:
+Since Python and Desmos use radians for trigonometric functions, `theta = 30 degrees` is written as:
 
-\[
-0.523599
-\]
+$$
+\theta = 0.523599\ \text{radians}
+$$
 
-Final equation:
+The final parametric equation is:
 
-```latex
-\left(t\cos(0.523599)-e^{0.030000\left|t\right|}\sin(0.3t)\sin(0.523599)+55.000000,\ 42+t\sin(0.523599)+e^{0.030000\left|t\right|}\sin(0.3t)\cos(0.523599)\right)
-```
+$$
+\left(
+t\cos(0.523599)
+-
+e^{0.030000|t|}
+\sin(0.3t)
+\sin(0.523599)
++
+55.000000,
+\ 
+42
++
+t\sin(0.523599)
++
+e^{0.030000|t|}
+\sin(0.3t)
+\cos(0.523599)
+\right)
+$$
 
 ---
 
@@ -81,9 +97,9 @@ The final equation can be visualized in Desmos using the following link:
 PASTE_YOUR_DESMOS_LINK_HERE
 ```
 
-Desmos equation format:
+Copy-paste format for Desmos:
 
-```latex
+```text
 \left(t\cos(0.523599)-e^{0.030000\left|t\right|}\sin(0.3t)\sin(0.523599)+55.000000,\ 42+t\sin(0.523599)+e^{0.030000\left|t\right|}\sin(0.3t)\cos(0.523599)\right)
 ```
 
@@ -128,7 +144,7 @@ It performs the following steps:
 
 1. Loads the given `xy_data.csv` file.
 2. Defines the parametric curve equation.
-3. Uses numerical optimization to estimate the unknown values of \(\theta\), \(M\), and \(X\).
+3. Uses numerical optimization to estimate the unknown values of `theta`, `M`, and `X`.
 4. Generates the predicted curve using the estimated values.
 5. Compares the predicted curve with the actual CSV points.
 6. Calculates the validation L1 error.
@@ -191,25 +207,23 @@ It contains all final output files.
 
 The given equation can be interpreted as a transformed curve.
 
-The expression:
+The expression below creates a sinusoidal wave whose amplitude is controlled by the exponential factor `M`.
 
-\[
+$$
 e^{M|t|}\sin(0.3t)
-\]
+$$
 
-creates a sinusoidal wave whose amplitude is controlled by the exponential factor \(M\).
+The parameter `theta` rotates the curve.
 
-The parameter \(\theta\) rotates the curve.
-
-The parameter \(X\) shifts the curve horizontally.
+The parameter `X` shifts the curve horizontally.
 
 The value `42` is a fixed vertical shift.
 
 Therefore, the problem is a parameter estimation problem where the unknown values are:
 
-\[
+$$
 \theta,\ M,\ X
-\]
+$$
 
 ---
 
@@ -252,17 +266,17 @@ To make the fitting more stable, the actual data points are reverse-transformed.
 
 The original equation can be seen as a rotated and shifted curve.
 
-If the correct \(\theta\) and \(X\) are used, then after reversing the transformation:
+If the correct `theta` and `X` are used, then after reversing the transformation:
 
-\[
+$$
 u \approx t
-\]
+$$
 
 and
 
-\[
+$$
 v \approx e^{M|t|}\sin(0.3t)
-\]
+$$
 
 The reverse transformation used is:
 
@@ -271,13 +285,7 @@ u = (x - X) * cos(theta) + (y - 42) * sin(theta)
 v = -(x - X) * sin(theta) + (y - 42) * cos(theta)
 ```
 
-This allows the optimization to compare:
-
-```python
-v
-```
-
-against:
+This allows the optimization to compare `v` against:
 
 ```python
 exp(M * abs(u)) * sin(0.3 * u)
@@ -326,9 +334,9 @@ refined_result = least_squares(
 
 This gives the final estimated values of:
 
-\[
+$$
 \theta,\ M,\ X
-\]
+$$
 
 ---
 
@@ -336,9 +344,9 @@ This gives the final estimated values of:
 
 A point-wise L1 validation error is calculated using:
 
-\[
+$$
 L1 = mean(|x_{actual} - x_{predicted}| + |y_{actual} - y_{predicted}|)
-\]
+$$
 
 In the script, the estimated `t` values are recovered using inverse transformation. Then the predicted curve points are generated at those same estimated `t` values.
 
@@ -481,8 +489,8 @@ M     = 0.0300000000
 X     = 55.0000000000
 L1 error = 0.000000000000
 
-Final Equation for README / Desmos
-----------------------------------
+Final Equation
+--------------
 \left(t\cos(0.523599)-e^{0.030000\left|t\right|}\sin(0.3t)\sin(0.523599)+55.000000,\ 42+t\sin(0.523599)+e^{0.030000\left|t\right|}\sin(0.3t)\cos(0.523599)\right)
 
 Files generated:
@@ -516,7 +524,7 @@ The optimization is also restricted to the exact parameter ranges given in the a
 The following work was completed in this project:
 
 1. Understood the given parametric curve.
-2. Identified the unknown parameters as \(\theta\), \(M\), and \(X\).
+2. Identified the unknown parameters as `theta`, `M`, and `X`.
 3. Loaded and inspected the given CSV data.
 4. Visualized the original data points.
 5. Defined the parametric curve in Python.
@@ -543,13 +551,33 @@ X     = 55
 
 Final equation:
 
-```latex
+$$
+\left(
+t\cos(0.523599)
+-
+e^{0.030000|t|}
+\sin(0.3t)
+\sin(0.523599)
++
+55.000000,
+\ 
+42
++
+t\sin(0.523599)
++
+e^{0.030000|t|}
+\sin(0.3t)
+\cos(0.523599)
+\right)
+$$
+
+Copy-paste Desmos version:
+
+```text
 \left(t\cos(0.523599)-e^{0.030000\left|t\right|}\sin(0.3t)\sin(0.523599)+55.000000,\ 42+t\sin(0.523599)+e^{0.030000\left|t\right|}\sin(0.3t)\cos(0.523599)\right)
 ```
 
----
-
-## 17. Author
+## 15. Author
 
 Submitted by:
 
