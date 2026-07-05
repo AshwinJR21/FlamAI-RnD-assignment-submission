@@ -420,7 +420,7 @@ It helps verify how close the predicted points are to the actual points.
 ### Step 1: Clone the Repository
 
 ```bash
-git clone YOUR_GITHUB_REPO_LINK_HERE
+git clone https://github.com/AshwinJR21/FlamAI-RnD-assignment-submission
 cd FlamAI-RnD-assignment-submission
 ```
 
